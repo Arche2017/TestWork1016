@@ -1,10 +1,17 @@
 Изменить настройки БД и прочие согласно .env
+
 Выполнить команды:
+
 composer install
+
 composer dump-autoload
+
 php artisan key:generate
+
 php artisan storage:link
+
 php artisan migrate
+
 Импортировать базу данных из файла posts_bd.sql
 
 php artisan serve

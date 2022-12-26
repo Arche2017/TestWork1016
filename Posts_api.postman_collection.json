@@ -1,0 +1,465 @@
+{
+	"info": {
+		"_postman_id": "10f427ae-433e-4e38-bd51-04d56711e5c7",
+		"name": "Posts_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User_register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://posts/register?name=Artur&email=artur.app@mail.d&password=password&role_id=2&_token={{token}}&password_confirmation=password",
+					"protocol": "http",
+					"host": [
+						"posts"
+					],
+					"path": [
+						"register"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Artur"
+						},
+						{
+							"key": "email",
+							"value": "artur.app@mail.d"
+						},
+						{
+							"key": "password",
+							"value": "password"
+						},
+						{
+							"key": "role_id",
+							"value": "2"
+						},
+						{
+							"key": "_token",
+							"value": "{{token}}"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegisterForm",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const regData=pm.response.json();\r",
+							"pm.environment.set('token', regData.token)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://posts/register",
+					"protocol": "http",
+					"host": [
+						"posts"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://posts/logout?_token={{token}}",
+					"protocol": "http",
+					"host": [
+						"posts"
+					],
+					"path": [
+						"logout"
+					],
+					"query": [
+						{
+							"key": "_token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginForm",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const loginData=pm.response.json();\r",
+							"pm.environment.set('token', loginData.token)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://posts/login",
+					"protocol": "http",
+					"host": [
+						"posts"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const loginData=pm.response.json();\r",
+							"pm.environment.set('user_id', loginData.id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://posts/login?email=artur@mail.e&password=password&_token={{token}}",
+					"protocol": "http",
+					"host": [
+						"posts"
+					],
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "artur@mail.e"
+						},
+						{
+							"key": "password",
+							"value": "password"
+						},
+						{
+							"key": "_token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllPosts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://posts/all",
+					"protocol": "http",
+					"host": [
+						"posts"
+					],
+					"path": [
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePostForm",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const loginData=pm.response.json();\r",
+							"pm.environment.set('token', loginData.token)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://posts/create",
+					"protocol": "http",
+					"host": [
+						"posts"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePost",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://posts/store?title=Название&content=Новый пост&user_id={{user_id}}&_token={{token}}",
+					"protocol": "http",
+					"host": [
+						"posts"
+					],
+					"path": [
+						"store"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "Название"
+						},
+						{
+							"key": "content",
+							"value": "Новый пост"
+						},
+						{
+							"key": "user_id",
+							"value": "{{user_id}}"
+						},
+						{
+							"key": "_token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "userNotAllowed",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://posts/userNotAllowed",
+					"protocol": "http",
+					"host": [
+						"posts"
+					],
+					"path": [
+						"userNotAllowed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateRole",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const roleData=pm.response.json();\r",
+							"pm.environment.set('token', roleData.token)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://posts/role/create",
+					"protocol": "http",
+					"host": [
+						"posts"
+					],
+					"path": [
+						"role",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateRole",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://posts/role/store?role=Роль&_token={{token}}",
+					"protocol": "http",
+					"host": [
+						"posts"
+					],
+					"path": [
+						"role",
+						"store"
+					],
+					"query": [
+						{
+							"key": "role",
+							"value": "Роль"
+						},
+						{
+							"key": "_token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePermission",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const permissionData=pm.response.json();\r",
+							"pm.environment.set('token', permissionData.token)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://posts/permission/create",
+					"protocol": "http",
+					"host": [
+						"posts"
+					],
+					"path": [
+						"permission",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePermission",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://posts/permission/store?permission=Разрешение&role_id=2&_token={{token}}",
+					"protocol": "http",
+					"host": [
+						"posts"
+					],
+					"path": [
+						"permission",
+						"store"
+					],
+					"query": [
+						{
+							"key": "permission",
+							"value": "Разрешение"
+						},
+						{
+							"key": "role_id",
+							"value": "2"
+						},
+						{
+							"key": "_token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
